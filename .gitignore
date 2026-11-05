@@ -1,0 +1,12 @@
+
+# Credenciales privadas
+/src/main/resources/db.properties
+
+# Archivos compilados
+/target/
+
+# Configuracion privada de NetBeans
+/nbproject/private/
+
+# Archivos temporales
+*.log
