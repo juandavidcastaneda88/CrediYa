@@ -1,0 +1,13 @@
+================================
+         REPORTE DE PAGOS
+================================
+
+PRESTAMO ID: 2
+Pago{id=1, prestamoId=2, fechaPago=2026-11-07, monto=300000.0}
+Pago{id=2, prestamoId=2, fechaPago=2026-11-07, monto=800000.0}
+
+PRESTAMO ID: 3
+Pago{id=3, prestamoId=3, fechaPago=2026-11-09, monto=100000.0}
+Pago{id=4, prestamoId=3, fechaPago=2026-11-09, monto=1000000.0}
+
+Total de pagos registrados: 4

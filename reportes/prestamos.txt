@@ -1,0 +1,33 @@
+================================
+       REPORTE DE PRESTAMOS
+================================
+
+PRESTAMO
+ID: 2
+Cliente: Cliente de prueba préstamo
+Empleado: Empleado de prueba préstamo
+Monto: 1000000.0
+Interes: 10.0%
+Cuotas: 12
+Monto total: 1100000.0
+Valor de cuota: 91666.67
+Saldo pendiente: 0.0
+Fecha de inicio: 2026-11-07
+Fecha de vencimiento: 2027-11-07
+Estado: PAGADO
+
+PRESTAMO
+ID: 3
+Cliente: Cliente de prueba menu
+Empleado: Empleado de prueba préstamo
+Monto: 1000000.0
+Interes: 10.0%
+Cuotas: 12
+Monto total: 1100000.0
+Valor de cuota: 91666.67
+Saldo pendiente: 0.0
+Fecha de inicio: 2026-11-09
+Fecha de vencimiento: 2027-11-09
+Estado: PAGADO
+
+Total de prestamos: 2

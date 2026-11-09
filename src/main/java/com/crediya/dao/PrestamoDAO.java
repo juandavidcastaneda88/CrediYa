@@ -126,6 +126,47 @@ public class PrestamoDAO {
 
 
     /*
+     * MÉTODO LISTAR POR CLIENTE
+     *
+     * Consulta los prestamos asociados a un cliente especifico.
+     */
+    public ArrayList<Prestamo> listarPorCliente(int clienteId) throws SQLException {
+
+        ArrayList<Prestamo> listaPrestamos = new ArrayList<>();
+
+        String sql = "SELECT "
+                + "p.id AS prestamo_id, p.monto, p.interes, p.cuotas, "
+                + "p.fecha_inicio, p.fecha_vencimiento, "
+                + "p.monto_total, p.valor_cuota, "
+                + "p.saldo_pendiente, p.estado, "
+                + "c.id AS cliente_id, c.nombre AS cliente_nombre, "
+                + "c.documento AS cliente_documento, c.correo AS cliente_correo, "
+                + "c.telefono AS cliente_telefono, "
+                + "e.id AS empleado_id, e.nombre AS empleado_nombre, "
+                + "e.documento AS empleado_documento, e.correo AS empleado_correo, "
+                + "e.rol AS empleado_rol, e.salario AS empleado_salario "
+                + "FROM prestamos p "
+                + "INNER JOIN clientes c ON p.cliente_id = c.id "
+                + "INNER JOIN empleados e ON p.empleado_id = e.id "
+                + "WHERE p.cliente_id = ? ORDER BY p.id";
+
+        try (Connection conexion = ConexionDB.obtenerConexion();
+             PreparedStatement sentencia = conexion.prepareStatement(sql)) {
+
+            sentencia.setInt(1, clienteId);
+
+            try (ResultSet resultado = sentencia.executeQuery()) {
+                while (resultado.next()) {
+                    listaPrestamos.add(crearPrestamo(resultado));
+                }
+            }
+        }
+
+        return listaPrestamos;
+    }
+
+
+    /*
      * MÉTODO BUSCAR POR ID
      *
      * Busca un préstamo utilizando su identificador.

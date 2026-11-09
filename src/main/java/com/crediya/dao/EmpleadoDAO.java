@@ -238,17 +238,16 @@ public class EmpleadoDAO {
      * Respuesta: Ejecuta consultas SELECT y devuelve
      * los resultados mediante ResultSet.
      *
-     * 10. ¿Por qué utilizamos BigDecimal?
-     * Respuesta: Para manejar el salario con mayor
-     * precisión en los valores decimales.
+     * 10. ¿Por qué el salario utiliza double en este curso?
+     * Respuesta: Porque es el tipo numerico decimal trabajado
+     * en este nivel de la asignatura.
      *
-     * 11. ¿Para qué sirve setBigDecimal()?
-     * Respuesta: Para enviar un valor BigDecimal
-     * como parámetro de una consulta SQL.
+     * 11. ¿Para qué sirve setDouble()?
+     * Respuesta: Para enviar un valor double a una consulta SQL.
      *
-     * 12. ¿Para qué sirve getBigDecimal()?
-     * Respuesta: Para recuperar un valor decimal
-     * desde los resultados de MySQL.
+     * 12. ¿Para qué sirve getDouble()?
+     * Respuesta: Para recuperar un valor decimal desde MySQL
+     * como un double.
      *
      * 13. ¿Qué significa throws SQLException?
      * Respuesta: Indica que el método puede producir

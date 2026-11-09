@@ -1,0 +1,7 @@
+================================
+       REPORTE DE EMPLEADOS
+================================
+
+Empleado{id=2, nombre='Empleado de prueba préstamo', documento='EMP-PRESTAMO-001', correo='empleado.prestamo@crediya.com', rol='ASESOR', salario=2500000.0}
+
+Total de empleados: 1

@@ -1,12 +1,14 @@
-
-# Credenciales privadas
+# Credenciales locales de MySQL
 /src/main/resources/db.properties
 
-# Archivos compilados
+# Resultados de compilacion
 /target/
+*.class
 
-# Configuracion privada de NetBeans
+# Configuracion privada del IDE
 /nbproject/private/
 
-# Archivos temporales
+# Archivos temporales y del sistema
 *.log
+.DS_Store
+Thumbs.db

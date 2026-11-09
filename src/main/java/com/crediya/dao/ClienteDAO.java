@@ -1,3 +1,4 @@
+
 package com.crediya.dao;
 
 import com.crediya.database.ConexionDB;
@@ -11,25 +12,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /*
+ * =====================================================
  * CLASE: ClienteDAO
+ * =====================================================
  *
  * DAO significa Data Access Object.
  *
- * Esta clase se encarga de realizar las operaciones
- * de acceso a la tabla clientes de MySQL.
+ * Esta clase realiza las operaciones de acceso
+ * a la tabla clientes de MySQL.
  *
- * Aquí implementamos las operaciones CRUD:
+ * Implementa las operaciones CRUD:
  * insertar, listar, buscar, actualizar y eliminar.
  */
 public class ClienteDAO {
 
     /*
-     * MÉTODO INSERTAR
+     * METODO INSERTAR
      *
-     * Registra un nuevo cliente en la base de datos.
-     *
-     * Utilizamos PreparedStatement para ejecutar la consulta
-     * SQL y enviar los datos del cliente mediante parámetros.
+     * Registra un nuevo cliente en MySQL.
      */
     public boolean insertar(Cliente cliente) throws SQLException {
 
@@ -37,24 +37,19 @@ public class ClienteDAO {
                 + "(nombre, documento, correo, telefono) "
                 + "VALUES (?, ?, ?, ?)";
 
-        // Establece la conexión y prepara la consulta SQL.
         try (Connection conexion = ConexionDB.obtenerConexion();
              PreparedStatement sentencia = conexion.prepareStatement(
                      sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            // Asigna los datos del cliente a los signos de interrogación.
             sentencia.setString(1, cliente.getNombre());
             sentencia.setString(2, cliente.getDocumento());
             sentencia.setString(3, cliente.getCorreo());
             sentencia.setString(4, cliente.getTelefono());
 
-            // Ejecuta la consulta de inserción.
             int filasAfectadas = sentencia.executeUpdate();
 
-            // Comprueba si el cliente fue registrado.
             if (filasAfectadas > 0) {
 
-                // Recupera el ID generado automáticamente por MySQL.
                 try (ResultSet claves = sentencia.getGeneratedKeys()) {
 
                     if (claves.next()) {
@@ -71,12 +66,9 @@ public class ClienteDAO {
 
 
     /*
-     * MÉTODO LISTAR
+     * METODO LISTAR
      *
-     * Consulta todos los clientes registrados en MySQL.
-     *
-     * ArrayList permite almacenar los clientes encontrados
-     * para devolverlos y mostrarlos posteriormente.
+     * Consulta todos los clientes registrados.
      */
     public ArrayList<Cliente> listar() throws SQLException {
 
@@ -89,10 +81,8 @@ public class ClienteDAO {
              PreparedStatement sentencia = conexion.prepareStatement(sql);
              ResultSet resultado = sentencia.executeQuery()) {
 
-            // Recorre los registros devueltos por MySQL.
             while (resultado.next()) {
 
-                // Crea un objeto Cliente con los datos encontrados.
                 Cliente cliente = new Cliente(
                         resultado.getInt("id"),
                         resultado.getString("nombre"),
@@ -101,7 +91,6 @@ public class ClienteDAO {
                         resultado.getString("telefono")
                 );
 
-                // Agrega el cliente a la lista.
                 listaClientes.add(cliente);
             }
         }
@@ -111,11 +100,11 @@ public class ClienteDAO {
 
 
     /*
-     * MÉTODO BUSCAR POR ID
+     * METODO BUSCAR POR ID
      *
-     * Busca un cliente específico utilizando su identificador.
+     * Busca un cliente mediante su identificador.
      *
-     * Devuelve el objeto Cliente si lo encuentra.
+     * Si existe, devuelve el objeto Cliente.
      * Si no existe, devuelve null.
      */
     public Cliente buscarPorId(int id) throws SQLException {
@@ -148,11 +137,9 @@ public class ClienteDAO {
 
 
     /*
-     * MÉTODO ACTUALIZAR
+     * METODO ACTUALIZAR
      *
-     * Modifica la información de un cliente existente.
-     *
-     * El ID permite identificar qué registro debe actualizarse.
+     * Modifica los datos de un cliente existente.
      */
     public boolean actualizar(Cliente cliente) throws SQLException {
 
@@ -169,19 +156,18 @@ public class ClienteDAO {
             sentencia.setString(4, cliente.getTelefono());
             sentencia.setInt(5, cliente.getId());
 
-            // Devuelve true si MySQL informa que se modificaron filas.
             return sentencia.executeUpdate() > 0;
         }
     }
 
 
     /*
-     * MÉTODO ELIMINAR
+     * METODO ELIMINAR
      *
      * Elimina un cliente utilizando su identificador.
      *
-     * Si el cliente tiene préstamos relacionados, MySQL puede
-     * impedir la eliminación debido a la clave foránea.
+     * MySQL puede impedir la eliminacion si el cliente
+     * tiene prestamos relacionados mediante una clave foranea.
      */
     public boolean eliminar(int id) throws SQLException {
 
@@ -192,7 +178,6 @@ public class ClienteDAO {
 
             sentencia.setInt(1, id);
 
-            // Devuelve true si se eliminó algún registro.
             return sentencia.executeUpdate() > 0;
         }
     }
@@ -203,61 +188,47 @@ public class ClienteDAO {
      * PREGUNTAS 
      * =====================================================
      *
-     * 1. ¿Qué significa DAO?
+     * 1. ¿Que significa DAO?
      * Respuesta: Data Access Object. Es una clase encargada
-     * de realizar las operaciones de acceso a la base de datos.
+     * de realizar operaciones de acceso a la base de datos.
      *
-     * 2. ¿Para qué sirve ClienteDAO?
+     * 2. ¿Para que sirve ClienteDAO?
      * Respuesta: Para administrar los registros de clientes
      * almacenados en MySQL.
      *
-     * 3. ¿Qué significa CRUD?
+     * 3. ¿Que significa CRUD?
      * Respuesta: Create, Read, Update y Delete.
-     * Son las operaciones básicas para administrar datos.
      *
-     * 4. ¿Para qué sirve PreparedStatement?
+     * 4. ¿Para que sirve PreparedStatement?
      * Respuesta: Para preparar y ejecutar consultas SQL
-     * utilizando parámetros.
+     * utilizando parametros.
      *
-     * 5. ¿Qué significan los signos de interrogación (?)?
-     * Respuesta: Son espacios reservados donde se asignan
-     * los valores que se enviarán a la consulta SQL.
+     * 5. ¿Para que sirve ResultSet?
+     * Respuesta: Para recorrer los resultados de una consulta.
      *
-     * 6. ¿Para qué sirve ResultSet?
-     * Respuesta: Para recorrer y consultar los resultados
-     * obtenidos de una consulta SELECT.
+     * 6. ¿Para que sirve ArrayList?
+     * Respuesta: Para almacenar varios objetos Cliente.
      *
-     * 7. ¿Para qué sirve ArrayList?
-     * Respuesta: Para almacenar varios objetos Cliente
-     * en una lista.
+     * 7. ¿Para que sirve executeUpdate()?
+     * Respuesta: Para ejecutar INSERT, UPDATE y DELETE.
      *
-     * 8. ¿Qué significa executeUpdate()?
-     * Respuesta: Ejecuta operaciones como INSERT, UPDATE
-     * y DELETE, y devuelve la cantidad de filas afectadas.
+     * 8. ¿Para que sirve executeQuery()?
+     * Respuesta: Para ejecutar consultas SELECT.
      *
-     * 9. ¿Para qué sirve executeQuery()?
-     * Respuesta: Para ejecutar consultas SELECT
-     * y obtener sus resultados mediante ResultSet.
+     * 9. ¿Que significa throws SQLException?
+     * Respuesta: Indica que el metodo puede generar
+     * un error relacionado con operaciones SQL.
      *
-     * 10. ¿Qué significa throws SQLException?
-     * Respuesta: Indica que el método puede producir
-     * un error relacionado con las operaciones SQL.
+     * 10. ¿Para que sirve try-with-resources?
+     * Respuesta: Para cerrar automaticamente conexiones
+     * y otros recursos utilizados.
      *
-     * 11. ¿Para qué sirve try-with-resources?
-     * Respuesta: Permite cerrar automáticamente los recursos
-     * utilizados, como conexiones y consultas.
+     * 11. ¿Para que sirve RETURN_GENERATED_KEYS?
+     * Respuesta: Para recuperar el ID generado por MySQL.
      *
-     * 12. ¿Para qué sirve RETURN_GENERATED_KEYS?
-     * Respuesta: Permite recuperar el identificador que
-     * MySQL genera automáticamente al insertar un cliente.
-     *
-     * 13. ¿Por qué utilizamos WHERE id = ?
-     * Respuesta: Para identificar el cliente específico
-     * que queremos consultar, actualizar o eliminar.
-     *
-     * 14. ¿Por qué MySQL podría impedir eliminar un cliente?
-     * Respuesta: Porque puede tener préstamos relacionados
-     * mediante una clave foránea.
+     * 12. ¿Por que utilizamos WHERE id = ?
+     * Respuesta: Para identificar el cliente que queremos
+     * consultar, actualizar o eliminar.
      *
      * =====================================================
      */

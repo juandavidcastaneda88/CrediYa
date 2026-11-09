@@ -1,0 +1,9 @@
+================================
+       REPORTE DE CLIENTES
+================================
+
+Cliente{id=2, nombre='Cliente de prueba préstamo', documento='CLI-PRESTAMO-001', correo='cliente.prestamo@crediya.com', telefono='3001234567'}
+
+Cliente{id=4, nombre='Cliente de prueba menu', documento='TEST-RUN-CLI-20261109-01', correo='cliente.menu@crediya.com', telefono='3005551234'}
+
+Total de clientes: 2

@@ -1,0 +1,111 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "com.crediya.model" {
+  abstract class Persona {
+    - int id
+    - String nombre
+    - String documento
+    - String correo
+    + obtenerTipoPersona() : String
+  }
+
+  class Cliente {
+    - String telefono
+    + obtenerTipoPersona() : String
+  }
+
+  class Empleado {
+    - String rol
+    - double salario
+    + obtenerTipoPersona() : String
+  }
+
+  enum EstadoPrestamo {
+    PENDIENTE
+    PAGADO
+  }
+
+  class Prestamo {
+    - int id
+    - double monto
+    - double interes
+    - int cuotas
+    - Date fechaInicio
+    - Date fechaVencimiento
+    - double montoTotal
+    - double valorCuota
+    - double saldoPendiente
+    - EstadoPrestamo estado
+    + calcularValores() : void
+    + setSaldoPendiente(double) : void
+  }
+
+  class Pago {
+    - int id
+    - Date fechaPago
+    - double monto
+  }
+
+  Persona <|-- Cliente
+  Persona <|-- Empleado
+  Cliente "1" -- "0..*" Prestamo : recibe
+  Empleado "1" -- "0..*" Prestamo : gestiona
+  Prestamo "1" -- "0..*" Pago : registra
+  Prestamo --> EstadoPrestamo
+}
+
+package "com.crediya.dao" {
+  class ClienteDAO
+  class EmpleadoDAO
+  class PrestamoDAO
+  class PagoDAO
+}
+
+package "com.crediya.database" {
+  class ConexionDB {
+    + obtenerConexion() : Connection
+    + probarConexion() : boolean
+  }
+}
+
+package "com.crediya.service" {
+  class ArchivoService {
+    + generarReportes() : void
+    + leerArchivo(String) : void
+  }
+  class ReporteService {
+    + listarPrestamosActivos() : ArrayList<Prestamo>
+    + listarPrestamosVencidos() : ArrayList<Prestamo>
+    + listarClientesMorosos() : ArrayList<Cliente>
+  }
+}
+
+package "com.crediya.view" {
+  class MenuVista
+}
+
+package "com.crediya.controller" {
+  class MenuControlador {
+    + iniciar() : void
+  }
+}
+
+ClienteDAO ..> ConexionDB
+EmpleadoDAO ..> ConexionDB
+PrestamoDAO ..> ConexionDB
+PagoDAO ..> ConexionDB
+ArchivoService ..> ClienteDAO
+ArchivoService ..> EmpleadoDAO
+ArchivoService ..> PrestamoDAO
+ArchivoService ..> PagoDAO
+ReporteService ..> PrestamoDAO
+ReporteService ..> ClienteDAO
+MenuControlador --> MenuVista
+MenuControlador --> ClienteDAO
+MenuControlador --> EmpleadoDAO
+MenuControlador --> PrestamoDAO
+MenuControlador --> PagoDAO
+MenuControlador --> ArchivoService
+MenuControlador --> ReporteService
+@enduml
