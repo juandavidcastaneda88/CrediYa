@@ -1,3 +1,16 @@
+# Funcionamiento del proyecto
+
+<img width="401" height="382" alt="Captura de pantalla 2026-11-13 205728" src="https://github.com/user-attachments/assets/10738f34-9b44-4904-b5ca-1fefc0b01ba9" />
+
+# Funcionamiento el proyecto
+<img width="377" height="248" alt="Captura de pantalla 2026-11-13 205709" src="https://github.com/user-attachments/assets/67ca9285-9776-4588-bf51-0e1b53939a68" />
+
+
+# Desarrollando el proyecto
+
+<img width="401" height="382" alt="Captura de pantalla 2026-11-13 205728" src="https://github.com/user-attachments/assets/10738f34-9b44-4904-b5ca-1fefc0b01ba9" />
+
+
 # Sistema de Cobros de Cartera CrediYa S.A.S.
 
 Aplicación de consola desarrollada en Java 21 para administrar empleados, clientes, préstamos y pagos de CrediYa S.A.S. El proyecto utiliza programación orientada a objetos, JDBC para conectarse a MySQL, archivos de texto para generar reportes y una organización MVC sencilla.
